@@ -13,7 +13,7 @@ if [ "${AUTO_UPDATE}" = true ] && [ ! -e "${MEDUSA_UPDATED_FILE}" ] ; then
  	export MEDUSA_VERSION=$(curl -k -sX GET "https://api.github.com/repos/pymedusa/Medusa/releases/latest" | tac | awk '/tag_name/{print $4;exit}' FS='[""]')
 	echo $MEDUSA_VERSION > /etc/medusa/medusa_version
 	curl -k -o /tmp/medusa.tar.gz -L "https://github.com/pymedusa/Medusa/archive/${MEDUSA_VERSION}.tar.gz"
-	tar xf /tmp/medusa.tar.gz -C /opt/medusa --strip-components=1
+	tar xvfz /tmp/medusa.tar.gz -C /opt/medusa --strip-components=1
 	
 	touch ${MEDUSA_UPDATED_FILE}
 fi
